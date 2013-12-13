@@ -3,23 +3,44 @@ function my_calendar($fill='') {
   
   $month_names=array("январь","февраль","март","апрель","май","июнь", "июль","август","сентябрь","октябрь","ноябрь","декабрь"); 
   
-  if (isset($_GET['y'])) $y=$_GET['y'];
-  if (isset($_GET['m'])) $m=$_GET['m']; 
-  if (isset($_GET['date']) AND strstr($_GET['date'],"-")) list($y,$m)=explode("-",$_GET['date']);
-  if (!isset($y) OR $y < 1970 OR $y > 2037) $y=date("Y");
-  if (!isset($m) OR $m < 1 OR $m > 12) $m=date("m");
+  if (!empty($_GET['y'])) 
+    $y=$_GET['y'];
+  if (!empty($_GET['m'])) 
+    $m=$_GET['m']; 
 
-  $month_stamp	=mktime(0,0,0,$m,1,$y);
-  $day_count		=date("t",$month_stamp);
-  $weekday			=date("w",$month_stamp);
-  if ($weekday==0) $weekday=7;
-  $start					=-($weekday-2);
-  $last=($day_count+$weekday-1) % 7;
-  if ($last==0) $end=$day_count; else $end=$day_count+7-$last;
-  $today				=date("Y-m-d");
-  $prev					=date('?\m=m&\y=Y',mktime (0,0,0,$m-1,1,$y));  
-  $next					=date('?\m=m&\y=Y',mktime (0,0,0,$m+1,1,$y));
-  $i=0;
+  if (!empty($_GET['date']) && strstr($_GET['date'],"-"))
+  {
+    list($y,$m)=explode("-", $_GET['date']);
+  } 
+    
+  if (empty($y) || $y < 1970 || $y > 2037)
+  {
+    $y=date("Y");
+  } 
+    
+  if (!empty($m) || $m < 1 || $m > 12)
+  {
+   $m=date("m");
+  }  
+
+  $month_stamp	= mktime(0,0,0,$m,1,$y);
+  $day_count		= date("t",$month_stamp);
+  $weekday			= date("w",$month_stamp);
+  if ($weekday==0)
+    $weekday=7;
+  $start				=-($weekday-2);
+  $last         = ($day_count+$weekday-1) % 7;
+  
+  if ($last==0) {
+     $end=$day_count; 
+  } else {
+    $end=$day_count+7-$last;
+  } 
+  
+  $today				= date("Y-m-d");
+  $prev					= date('?\m=m&\y=Y',mktime (0,0,0,$m-1,1,$y));  
+  $next					= date('?\m=m&\y=Y',mktime (0,0,0,$m+1,1,$y));
+  $i = 0;
 ?> 
 
  <div>
