@@ -1,16 +1,10 @@
 <?php
-/*
-define ("DB_HOST",      "mysql52.hoster.ru");
-define ("DB_NAME",      "m42311");
-define ("DB_PASS",      "gpFJK2Yk");
-define ("DB_BASE",      "db42311m");
-*/
-
 
 define ("DB_HOST",      "localhost");
 define ("DB_NAME",      "root");
-define ("DB_PASS",      "pass" );
-define ("DB_BASE",      "second-car");
+define ("DB_PASS",      "stopstop");
+define ("DB_BASE",      "origin_second-car");
+
 
 
 /////////////////////////////////////////////////////////////////////

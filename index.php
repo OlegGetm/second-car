@@ -1,8 +1,14 @@
 <?php
 session_start();
+
+// phpinfo(); exit;
+
 require_once('_include/functions/functions.php');
 require_once('_include/classes/class.CacheFile.php');
+
 $link = to_connect();
+
+
 
 $add_head = '
 <script type="text/javascript" src="_include/js/_core/easySlider1.5_mod.js"></script>
@@ -24,6 +30,7 @@ $zapros = "SELECT       car_id, brand, model, year1, title
             ORDER BY 				date_mod desc
             LIMIT 					6";
 $result = $link->query($zapros);
+//var_dump($result);
 
 while ($row = $result->fetch_assoc()) {
     $car_topics[] = array($row['car_id'], $row['title'], $row['brand'], $row['model'], $row['year1']);
